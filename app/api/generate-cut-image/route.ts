@@ -4,7 +4,7 @@ import type { GenerateCutImageRequestBody, GenerateCutImageResponse } from "@/li
 
 export const runtime = "nodejs";
 
-const IMAGE_MODEL = "google/gemini-2.5-flash-image";
+const IMAGE_MODEL = process.env.openrouter_image_model || "google/gemini-2.5-flash-image";
 
 function buildPrompt(body: GenerateCutImageRequestBody): string {
   return `다음 장면의 첫 프레임(첫 컷)을 그려줘. 스토리보드 스타일의 사실적인 일러스트로:

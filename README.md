@@ -9,10 +9,16 @@ npm install
 npm run dev
 ```
 
-`.env.local`에 `OPENROUTER_API_KEY`를 설정해야 합니다 (기존 `fortune-app/.env.local`의 값을 그대로 복사해서 사용 가능).
+`.env.local`에 아래 값을 설정해야 합니다 (`OPENROUTER_API_KEY`는 기존 `fortune-app/.env.local`의 값을 그대로 복사해서 사용 가능).
 
 ```
 OPENROUTER_API_KEY=sk-or-v1-...
+
+# 컷 세그멘테이션에 사용할 모델 (tool-calling/구조화된 출력 지원 필요, 미설정 시 anthropic/claude-sonnet-4.5)
+openrouter_model=anthropic/claude-sonnet-4.5
+
+# 컷 첫 프레임 이미지 생성에 사용할 모델 (미설정 시 google/gemini-2.5-flash-image)
+openrouter_image_model=google/gemini-2.5-flash-image
 ```
 
 ## 기능
@@ -23,8 +29,10 @@ OPENROUTER_API_KEY=sk-or-v1-...
 
 ## 사용 모델 (OpenRouter)
 
-- 컷 분석(세그멘테이션): `anthropic/claude-sonnet-4.5` — tool-calling으로 구조화된 JSON 강제
-- 이미지 생성: `google/gemini-2.5-flash-image`
+`.env.local`의 `openrouter_model` / `openrouter_image_model`로 지정합니다. 미설정 시 기본값이 사용됩니다.
+
+- 컷 분석(세그멘테이션) 기본값: `anthropic/claude-sonnet-4.5` — tool-calling으로 구조화된 JSON 강제. 다른 모델로 바꾸는 경우 해당 모델이 OpenRouter에서 tool-calling(function calling)을 지원하는지 확인 필요.
+- 이미지 생성 기본값: `google/gemini-2.5-flash-image`
 
 ## v1 제약사항
 

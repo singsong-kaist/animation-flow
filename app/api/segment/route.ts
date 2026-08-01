@@ -7,7 +7,7 @@ import type { SegmentResponse } from "@/lib/types";
 export const runtime = "nodejs";
 
 const MAX_STORY_LENGTH = 10000;
-const SEGMENT_MODEL = "anthropic/claude-sonnet-4.5";
+const SEGMENT_MODEL = process.env.openrouter_model || "anthropic/claude-sonnet-4.5";
 
 const SYSTEM_PROMPT = `당신은 영상 스토리보드 전문가입니다. 주어진 이야기를 순서대로 컷(cut)으로 나누고, 각 컷에 대해 정확한 정보를 추출해 ${EMIT_CUTS_TOOL_NAME} 도구를 호출하세요.
 
